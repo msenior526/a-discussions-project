@@ -10,8 +10,9 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
 
-  # GET: /users/new
+  # GET: /users/new, SIGNUP PAGE
   get "/users/new" do
+   puts params 
     erb :"/users/new.html"
   end
 
