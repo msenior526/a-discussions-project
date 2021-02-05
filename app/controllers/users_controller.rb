@@ -1,24 +1,25 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
-  end
+  # # GET: /users
+  # get "/users" do
+  #   erb :"/users/index.html"
+  # end
 
   # GET: /users/new, SIGNUP PAGE
   get "/users/signup" do
-    erb :"/users/new.html"
+    erb :"/users/signup.html"
   end
 
   # POST: /users
-  post "/signup" do
-    binding.pry
-    # user = User.create(params[:user])
-    # if user.valid?
-    #   session[:user_id] = user.id
-    #   redirect "/users/#{user.id}"
-    # else
-    #   redirect "/users/signup"
+  post "/users/signup" do
+   user = User.create(params[:user])
+  #  binding.pry
+  
+    if user.valid?
+      session[:user_id] = user.id
+      redirect "/users/#{user.id}"
+    else
+      redirect "/users/signup"
   end
 
   # GET: /users/5
@@ -40,4 +41,5 @@ class UsersController < ApplicationController
   # delete "/users/:id/delete" do
   #   redirect "/users"
   # end
+end
 end
