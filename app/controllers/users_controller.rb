@@ -12,14 +12,19 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/signup" do
-    user = User.create(params[:user])
-    redirect "/users"
+    binding.pry
+    # user = User.create(params[:user])
+    # if user.valid?
+    #   session[:user_id] = user.id
+    #   redirect "/users/#{user.id}"
+    # else
+    #   redirect "/users/signup"
   end
 
-  # # GET: /users/5
-  # get "/users/:id" do
-  #   erb :"/users/show.html"
-  # end
+  # GET: /users/5
+  get "/users/:id" do
+    erb :"/users/show.html"
+  end
 
   # # GET: /users/5/edit
   # get "/users/:id/edit" do
