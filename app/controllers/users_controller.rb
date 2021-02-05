@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   post "/users/signup" do
    user = User.create(params[:user])
   #  binding.pry
-  
     if user.valid?
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
