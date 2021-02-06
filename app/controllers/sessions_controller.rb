@@ -5,18 +5,23 @@ class SessionsController < ApplicationController
     erb :"/sessions/login.html"
   end
 
-  # GET: /sessions/new
-  get "/sessions/new" do
-    erb :"/sessions/new.html"
-  end
-
   # POST: /sessions
   post "/login" do
-    User.find_by_email(params[:user][:email])
-    if user && user.authenticate(params[:user][:email])
-      redirect "/"
+    user = User.find_by_email(params[:user][:email])
+  
+  
+    if user && user.authenticate(params[:user][:password])
+      session[:user_id] = user.id
+      redirect "/users/#{user.id}"
     else 
-      redirect "/signup"
+      redirect "/login"
     end
   end
+    
+  # GET: /sessions/new
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
+end
 

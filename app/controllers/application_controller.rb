@@ -9,9 +9,9 @@ class ApplicationController < Sinatra::Base
     set :session_secret, ENV['SESSION_SECRET']
   end
 
-  error Sinatra::NotFound do 
-    erb :error
-  end 
+  # error Sinatra::NotFound do 
+  #   erb :error
+  # end 
 
   get "/" do
     erb :welcome
