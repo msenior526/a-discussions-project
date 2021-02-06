@@ -6,19 +6,20 @@ class UsersController < ApplicationController
   # end
 
   # GET: /users/new, SIGNUP PAGE
-  get "/users/signup" do
+  get "/signup" do
     erb :"/users/signup.html"
   end
 
   # POST: /users
-  post "/users/signup" do
+  post "/signup" do
    user = User.create(params[:user])
   #  binding.pry
     if user.valid?
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
     else
-      redirect "/users/signup"
+      redirect "/signup"
+    end
   end
 
   # GET: /users/5
@@ -40,5 +41,4 @@ class UsersController < ApplicationController
   # delete "/users/:id/delete" do
   #   redirect "/users"
   # end
-end
 end
