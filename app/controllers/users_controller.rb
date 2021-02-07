@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
   get "/users" do
+    redirect_if_not_logged_in
     redirect "users/:id"
   end
-  
+
   # GET: /users/new, SIGNUP PAGE
   get "/signup" do
+    if logged_in?
+      redirect "/users"
+    end
     erb :"/users/signup.html"
   end
 

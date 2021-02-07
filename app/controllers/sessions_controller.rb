@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
 
   # GET: /sessions
   get "/login" do
+    if logged_in?
+      redirect "/users"
+    end
     erb :"/sessions/login.html"
   end
 
