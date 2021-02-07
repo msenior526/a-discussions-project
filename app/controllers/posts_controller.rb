@@ -8,12 +8,17 @@ class PostsController < ApplicationController
 
   # GET: /posts/new
   get "/posts/new" do
+    redirect_if_not_logged_in
+    @user = current_user
     erb :"/posts/new.html"
   end
 
   # POST: /posts
   post "/posts" do
+    @user = current_user
     post = Post.create(params[:post])
+    post.user = @user
+    post.save
     redirect "/posts/#{post.id}"
   end
 

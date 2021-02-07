@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   # POST: /users
   post "/signup" do
    user = User.create(params[:user])
-  #  binding.pry
     if user.valid?
       session[:user_id] = user.id
       redirect "/users/#{user.id}"
@@ -19,6 +18,7 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
+    @user = current_user
     erb :"/users/show.html"
   end
 
