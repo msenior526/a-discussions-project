@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  get "/users" do
+    redirect "users/:id"
+  end
+  
   # GET: /users/new, SIGNUP PAGE
   get "/signup" do
     erb :"/users/signup.html"

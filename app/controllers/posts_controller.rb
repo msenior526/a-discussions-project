@@ -32,6 +32,9 @@ class PostsController < ApplicationController
   get "/posts/:id/edit" do
     redirect_if_not_logged_in
     @edit_post = Post.find_by_id(params[:id])
+    if @edit_post.user != current_user
+      redirect "/posts"
+    end
     erb :"/posts/edit.html"
   end
 
@@ -46,6 +49,9 @@ class PostsController < ApplicationController
   # DELETE: /posts/5/delete
   delete "/posts/:id/delete" do
     @delete_post = Post.find_by_id(params[:id])
+    if @delete_post.user != current_user
+      redirect "/posts"
+    end
     @delete_post.delete
     redirect "/posts"
   end

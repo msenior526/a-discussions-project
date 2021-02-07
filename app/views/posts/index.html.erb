@@ -1,6 +1,7 @@
 <h1>All Posts.</h1>
 
 <% @posts.each do |post| %> 
-    <h3">Title: <%= post.title %></h3><br>
+    @<%= post.user.username %>
+    <h3>Title: <%= post.title %></h3><br>
     <h3>Description: <br><%= post.description %></h3><br><br>
  <% end %>
