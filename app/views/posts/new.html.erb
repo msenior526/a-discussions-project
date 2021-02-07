@@ -1,1 +1,7 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create a new post.</h1>
+<form action="/posts" method="POST">
+<label for="title">TITLE</label>
+<input type="text" id="title" name="post[title]"><br>
+<label for="description">DESCRIPTION</label>
+<input type="text" id="description" name="post[description]"><br>
+<input type="submit" value="Submit Post">
