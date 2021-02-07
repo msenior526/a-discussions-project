@@ -25,11 +25,16 @@ class PostsController < ApplicationController
 
   # GET: /posts/5/edit
   get "/posts/:id/edit" do
+    @post = Post.find_by_id(params[:id])
     erb :"/posts/edit.html"
   end
 
   # PATCH: /posts/5
   patch "/posts/:id" do
+    @post = Post.find_by_id(params[:id])
+    @post.title = params[:title]
+    @post.content = params[:decription]
+    @post.save
     redirect "/posts/:id"
   end
 
