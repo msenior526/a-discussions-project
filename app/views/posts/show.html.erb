@@ -1,6 +1,16 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.description %><p><br>
 
+<form action="/comments" method="post">
+<label for="comment">Comment:</label>
+<input type="text" id="content" name="comment[content]">
+<input type="submit" value="Submit Comment">
+</form>
+<br>
+<br>
+<br>
+<br>
+
 <form action="/posts/<%= @post.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Post">

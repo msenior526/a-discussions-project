@@ -2,6 +2,6 @@
 
 <% @posts.each do |post| %> 
     @<%= post.user.username %>
-    <h3>Title: <%= post.title %></h3><br>
+    <a href="/posts/<%= post.id %>"> <%= post.title %></a><br>
     <h3>Description: <br><%= post.description %></h3><br><br>
  <% end %>
