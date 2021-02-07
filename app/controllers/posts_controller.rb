@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   # GET: /posts
   get "/posts" do
+    @posts = Post.all 
     erb :"/posts/index.html"
   end
 
@@ -12,7 +13,8 @@ class PostsController < ApplicationController
 
   # POST: /posts
   post "/posts" do
-    redirect "/posts"
+    post = Post.create(params[:post])
+    redirect "/posts/#{post.id}"
   end
 
   # GET: /posts/5
