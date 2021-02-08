@@ -13,8 +13,8 @@ class CommentsController < ApplicationController
   # POST: /comments
   post "/comments" do
     redirect_if_not_logged_in
+    binding.pry
     comment = Comment.new(params[:comment])
-    comment.save
     redirect "/comments"
   end
 
