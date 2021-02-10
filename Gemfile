@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'dotenv'
 gem 'sinatra-flash'
+gem 'bootstrap', '~> 5.0.0.beta1'
 
 group :test do
   gem 'rspec'
