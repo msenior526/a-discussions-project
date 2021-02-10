@@ -1,3 +1,9 @@
 <h2>You have successfully logged in!</h2>
 <h1>WELCOME, <%= @user.username.capitalize %>!</h1><br>
+
+<h3>Here are all of your posts:</h3><br>
+<% @user.posts.each do |post| %>
+    <a href="/posts/<%= post.id %>"><%= post.title %></a>
+    <p><%= post.description %></p><br>
+<% end %>
 <a href="/logout">LOG OUT</a> 
