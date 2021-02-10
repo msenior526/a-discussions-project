@@ -2,8 +2,8 @@
 <form action="/posts/<%= @edit_post.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label for="title">TITLE</label>
-  <input type="text" id="title" name="post[title]"><br>
+  <input type="text" id="title" name="post[title]" value="<%= @edit_post.title %>"><br>
   <label for="description">DESCRIPTION</label>
-  <input type="text" id="description" name="post[description]"><br>
+  <input type="text" id="description" name="post[description]" value="<%= @edit_post.description %>"><br>
   <input type="submit" value="Submit">
 </form> 
