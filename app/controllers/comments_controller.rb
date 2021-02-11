@@ -1,21 +1,28 @@
 class CommentsController < ApplicationController
 
   # GET: /comments
-  get "/comments" do
-    erb :"/comments/index.html"
-  end
+  # get "/comments" do
+  #   erb :"/comments/index.html"
+  # end
 
-  # GET: /comments/new
-  get "/comments/new" do
-    erb :"/comments/new.html"
-  end
+  # # GET: /comments/new
+  # get "/comments/new" do
+  #   erb :"/comments/new.html"
+  # end
 
   # POST: /comments
   post "/comments" do
     redirect_if_not_logged_in
-    binding.pry
-    comment = Comment.new(params[:comment])
-    redirect "/comments"
+    post = Post.find_by_id(params[:comment][:post_id])
+    # binding.pry
+    comment = post.comments.build(content: params[:comment][:content])
+    if comment.save
+      flash[:success] = "Successfully created!"
+    redirect "/posts/#{post.id}"
+    else
+      flash[:error] = comment.errors.full_messages.to_sentence
+      redirect "/posts/#{post.id}"
+    end
   end
 
   # GET: /comments/5
