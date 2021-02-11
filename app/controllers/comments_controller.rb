@@ -37,7 +37,14 @@ class CommentsController < ApplicationController
 
   # PATCH: /comments/5
   patch "/comments/:id" do
-    redirect "/comments/:id"
+    edit_comment = Comment.find_by_id(params[:id])
+    binding.pry
+    if edit_comment.user != current_user
+      redirect "/posts"
+    end
+    edit_comment.update(params[:comment])
+    edit_comment.save
+    redirect "/posts/#{edit_comment.id}"
   end
 
   # DELETE: /comments/5/delete
