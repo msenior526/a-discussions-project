@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
     has_many :posts
-    has_many :comments, through: :posts
+    has_many :comments
     has_many :favoriteposts
     has_many :favorites, through: :favorite_recipes, source: :post
     has_secure_password

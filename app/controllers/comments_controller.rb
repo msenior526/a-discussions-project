@@ -42,6 +42,12 @@ class CommentsController < ApplicationController
 
   # DELETE: /comments/5/delete
   delete "/comments/:id/delete" do
-    redirect "/comments"
+    delete_comment = Comment.find_by_id(params[:id])
+    binding.pry
+    # if delete_comment.post.user != current_user
+    #   redirect "/posts"
+    # end
+    delete_comment.delete
+    redirect "/posts"
   end
 end

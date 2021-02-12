@@ -10,7 +10,11 @@
 <p><%= @post.description %><p><br>
 
 <% @comments.each do |comment|  %>
-<%=   comment.content %><br>
+<%=   comment.content %>
+<form action="/comments/<%= comment.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Comment">
+</form>
 <% end %>
 
 <form action="/comments" method="post">
