@@ -8,6 +8,7 @@
 
 <h1>WELCOME, <%= @user.username.capitalize %>!</h1><br>
 
+<a href="/posts/new">Create a NEW POST</a>
 <h3>Here are all of your posts:</h3><br>
 <% @user.posts.each do |post| %>
     <a href="/posts/<%= post.id %>"><%= post.title %></a>

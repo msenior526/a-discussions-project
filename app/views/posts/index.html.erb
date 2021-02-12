@@ -1,5 +1,8 @@
 <h1>All Posts.</h1>
 
+<a href="/posts/new">Create a NEW POST</a>
+<br>
+<br>
 <% @posts.each do |post| %> 
     @<%= post.user.username %>
     <a href="/posts/<%= post.id %>"> <%= post.title %></a><br>
