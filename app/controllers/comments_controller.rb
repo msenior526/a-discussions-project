@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     redirect_if_not_logged_in
     post = Post.find_by_id(params[:comment][:post_id])
     # binding.pry
-    comment = post.comments.build(content: params[:comment][:content])
+    comment = post.comments.build(content: params[:comment][:content], user_id: session[:user_id])
     if comment.save
       flash[:success] = "Successfully created!"
     redirect "/posts/#{post.id}"
@@ -43,10 +43,9 @@ class CommentsController < ApplicationController
   # DELETE: /comments/5/delete
   delete "/comments/:id/delete" do
     delete_comment = Comment.find_by_id(params[:id])
-    binding.pry
-    # if delete_comment.post.user != current_user
-    #   redirect "/posts"
-    # end
+    if delete_comment.user != current_user
+      redirect "/posts"
+    end
     delete_comment.delete
     redirect "/posts"
   end
