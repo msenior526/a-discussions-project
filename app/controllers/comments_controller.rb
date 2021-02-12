@@ -30,22 +30,15 @@ class CommentsController < ApplicationController
     erb :"/comments/show.html"
   end
 
-  # GET: /comments/5/edit
-  get "/comments/:id/edit" do
-    erb :"/comments/edit.html"
-  end
+  # # GET: /comments/5/edit
+  # get "/comments/:id/edit" do
+  #   erb :"/comments/edit.html"
+  # end
 
-  # PATCH: /comments/5
-  patch "/comments/:id" do
-    edit_comment = Comment.find_by_id(params[:id])
-    binding.pry
-    if edit_comment.user != current_user
-      redirect "/posts"
-    end
-    edit_comment.update(params[:comment])
-    edit_comment.save
-    redirect "/posts/#{edit_comment.id}"
-  end
+  # # PATCH: /comments/5
+  # patch "/comments/:id" do
+  #   redirect "/comments/:id"
+  # end
 
   # DELETE: /comments/5/delete
   delete "/comments/:id/delete" do
