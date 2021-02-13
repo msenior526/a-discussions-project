@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     post = Post.create(params[:post])
     post.user = @user
     post.save
-    redirect "/posts/#{post.id}"
+    redirect "/posts"
   end
 
   # GET: /posts/5
