@@ -11,11 +11,18 @@
 <% if @user.posts.count == 0 %>
 <p> You have no posts. <a href="/posts/new">Create a new one here.</a> </p>
 <% else %>
-<a href="/posts/new">Create a NEW POST</a><br>
+Create a new post <a href="/posts/new">here</a>!<br>
 <h3>Here are all of your posts:</h3><br>
 <% @user.posts.each do |post| %>
-    <a href="/posts/<%= post.id %>"><%= post.title %></a>
-    <p><%= post.description %></p><br>
+    <div class="card">
+    <div class="card-header">
+    <%= post.user.username %>
+    </div>
+        <div class="card-body">
+        <h5 class="card-title"><a href="/posts/<%= post.id %>"><%= post.title %></a></h5>
+    <p><%= post.description %></p>
+    </div>
+    </div>
 <% end %>
 <% end %>
 
