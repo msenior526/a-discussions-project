@@ -81,6 +81,10 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+  
+  #favorite-button {
+    background-color: aqua;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -112,4 +116,6 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  
 }

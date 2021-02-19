@@ -9,9 +9,7 @@
 <form method="post" action="/favoriteposts">
 <input type="hidden" value="<%= @post.id %>" name="favoriteposts[post_id]">
 <input type="hidden" value="<%= current_user.id %>" name="favoriteposts[user_id]">
-<label>FAV</label>
-<input type="checkbox" name="user[favorites][]">
-<input type="submit" value="Add to Favs">
+<input id="favorite-button" type="submit" value="<%= @post.button_text(current_user) %>">
 </form>
 
 <h1><%= @post.title %></h1>

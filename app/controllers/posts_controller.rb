@@ -25,8 +25,8 @@ class PostsController < ApplicationController
   # GET: /posts/5
   get "/posts/:id" do
     @post = Post.find_by_id(params[:id])
-    # binding.pry
     @comments = @post.comments
+    # binding.pry
     erb :"/posts/show.html"
   end
 
@@ -43,9 +43,11 @@ class PostsController < ApplicationController
   # PATCH: /posts/5
   patch "/posts/:id" do
     edit_post = Post.find_by_id(params[:id])
-    edit_post.update(params[:post])
-    edit_post.save
-    redirect "/posts/#{edit_post.id}"
+    if edit_post.update(params[:post])
+      redirect "/posts/#{edit_post.id}"
+    else 
+      redirect "/posts/#{edit_post.id}/edit"
+    end
   end
 
   # DELETE: /posts/5/delete
