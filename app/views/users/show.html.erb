@@ -8,6 +8,8 @@
 
 <h1>WELCOME, <%= @user.username.capitalize %>!</h1><br>
 
+<a href="/users/<%= @user.id %>/favorites">Favorites</a><br>
+
 <% if @user.posts.count == 0 %>
 <p> You have no posts. <a href="/posts/new">Create a new one here.</a> </p>
 <% else %>

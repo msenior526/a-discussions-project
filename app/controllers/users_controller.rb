@@ -29,8 +29,12 @@ class UsersController < ApplicationController
   # GET: /users/5
   get "/users/:id" do
     @user = current_user
-    # binding.pry
     erb :"/users/show.html"
+  end
+
+  get "/users/:id/favorites" do
+    @favorites = current_user.favorites
+    erb :"/users/favorites.html"
   end
 
   # # DELETE: /users/5/delete
