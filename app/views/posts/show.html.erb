@@ -6,18 +6,27 @@
 <%= flash[:success] %>
 <% end %>
 
+
+
 <h1><%= @post.title %></h1>
 <p><%= @post.description %><p><br>
 
 <% @comments.each do |comment|  %>
+  <div class="card">
+  <div class="card-header">
 @<%=   comment.user.username %><br>
-<%=   comment.content %><br><br>
+</div>
+<div class="card-body">
+<p class="card-text"><%=   comment.content %><br></p>
 <% if comment.user_id == session[:user_id] %>
 <form action="/comments/<%= comment.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Comment">
 </form>
 <% end %>
+</div>
+    
+    </div>
 <% end %>
 
 <form action="/comments" method="post">
