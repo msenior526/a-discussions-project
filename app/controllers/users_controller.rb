@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   # GET: /users/5
   get "/users/:id" do
     @user = current_user
-    binding.pry
+    # binding.pry
     erb :"/users/show.html"
   end
 

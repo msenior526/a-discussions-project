@@ -18,6 +18,14 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  post "/favoriteposts" do
+
+    post = Post.find_by_id(params[:favoriteposts][:post_id])
+    fav = Favoritepost.create(params[:favoriteposts])
+    binding.pry
+    redirect "/posts/#{post.id}"
+  end
+
   helpers do
     def current_user
 			@current_user ||= User.find(session[:user_id]) if session[:user_id]
