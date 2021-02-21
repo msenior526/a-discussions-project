@@ -5,12 +5,13 @@
 <% if flash[:success] %>
 <%= flash[:success] %>
 <% end %>
-
+<% if logged_in? %>
 <form method="post" action="/favoriteposts">
 <input type="hidden" value="<%= @post.id %>" name="favoriteposts[post_id]">
 <input type="hidden" value="<%= current_user.id %>" name="favoriteposts[user_id]">
 <input id="favorite-button" type="submit" value="<%= @post.button_text(current_user) %>">
 </form>
+<% end %>
 
 <h1><%= @post.title %></h1>
 <p><%= @post.description %><p><br>
@@ -32,13 +33,14 @@
     
     </div>
 <% end %>
-
+<% if logged_in? %>
 <form action="/comments" method="post">
 <input type="hidden" value="<%= @post.id %>" name="comment[post_id]">
 <label for="comment">Comment:</label>
 <textarea id="content" name="comment[content]"></textarea>
 <input type="submit" value="Submit Comment">
 </form>
+<% end %>
 <br>
 <br>
 <br>
