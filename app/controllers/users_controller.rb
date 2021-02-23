@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   get "/users" do
+    # binding.pry
     redirect_if_not_logged_in
     redirect "users/:id"
   end
@@ -40,7 +41,6 @@ class UsersController < ApplicationController
   # # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     delete_user = User.find_by_id(params[:id])
-    binding.pry
     if delete_user != current_user
       redirect "/users"
     end
