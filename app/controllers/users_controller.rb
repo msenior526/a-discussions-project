@@ -40,7 +40,8 @@ class UsersController < ApplicationController
   # # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     delete_user = User.find_by_id(params[:id])
-    if delete_user.user != current_user
+    binding.pry
+    if delete_user != current_user
       redirect "/users"
     end
     delete_comment.delete

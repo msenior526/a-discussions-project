@@ -28,4 +28,11 @@ Create a new post <a href="/posts/new">here</a>!<br>
 <% end %>
 <% end %>
 
+<% if @user.id == session[:user_id] %>
+          <form action="/users/<%= @user.id %>/delete" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Account">
+          </form>
+        <% end %>
+
 <a href="/logout">LOG OUT</a> 
