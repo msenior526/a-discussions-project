@@ -44,7 +44,8 @@ class UsersController < ApplicationController
     if delete_user != current_user
       redirect "/users"
     end
-    delete_comment.delete
+    delete_user.delete
+    session.clear
     redirect "/"
   end
 end
