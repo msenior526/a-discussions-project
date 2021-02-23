@@ -15,7 +15,11 @@
 <% end %>
 
 <h1><%= @post.title %></h1>
-<p><%= @post.description %><p><br>
+<p><%= @post.description %><p>
+
+<% if @post.user_id == session[:user_id] %>
+  Edit your post <a href="/posts/<%= @post.slug %>/edit">here</a>
+<% end %>
 
 <% @comments.each do |comment|  %>
   <div class="card">
@@ -44,7 +48,7 @@
 <% end %>
 
 <% if @post.user_id == session[:user_id] %>
-  <form action="/posts/<%= @post.id %>/delete" method="post">
+  <form action="/posts/<%= @post.slug %>/delete" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Post">
   </form> 
