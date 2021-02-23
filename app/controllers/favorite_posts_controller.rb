@@ -1,4 +1,4 @@
-class FavoritePosts < ApplicationController
+class FavoritePostsController < ApplicationController
 
   post "/favoriteposts" do
     post = Post.find_by_id(params[:favoriteposts][:post_id])
@@ -7,7 +7,7 @@ class FavoritePosts < ApplicationController
       else
         favortiepost = Favoritepost.where(["user_id = ? and post_id = ?", current_user.id, post.id]).delete_all
       end
-    redirect "/posts/#{post.id}"
+    redirect "/posts/#{post.slug}"
   end
 
 end

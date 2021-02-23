@@ -10,3 +10,4 @@ use CommentsController
 use SessionsController
 use PostsController
 use UsersController
+use FavoritePostsController
