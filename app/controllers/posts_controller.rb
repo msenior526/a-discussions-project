@@ -21,6 +21,9 @@ class PostsController < ApplicationController
 
   get "/posts/:slug" do
     @post = Post.find_by_slug(params[:slug])
+    if @post.nil?
+      raise Sinatra::NotFound
+    end
     @comments = @post.comments
     erb :"/posts/show.html"
   end
