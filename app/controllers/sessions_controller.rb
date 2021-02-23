@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
 
-  # GET: /sessions
   get "/login" do
     if logged_in?
       redirect "/users"
@@ -8,7 +7,6 @@ class SessionsController < ApplicationController
     erb :"/sessions/login.html"
   end
 
-  # POST: /sessions
   post "/login" do
     user = User.find_by_email(params[:user][:email])
     if user && user.authenticate(params[:user][:password])
@@ -18,8 +16,7 @@ class SessionsController < ApplicationController
       redirect "/login"
     end
   end
-    
-  # GET: /sessions/new
+
   get "/logout" do
     session.clear
     redirect "/"
