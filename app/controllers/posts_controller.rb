@@ -40,18 +40,18 @@ class PostsController < ApplicationController
   end
 
   # PATCH: /posts/5
-  patch "/posts/:id" do
-    edit_post = Post.find_by_id(params[:id])
+  patch "/posts/:slug" do
+    edit_post = Post.find_by_slug(params[:slug])
     if edit_post.update(params[:post])
-      redirect "/posts/#{edit_post.id}"
+      redirect "/posts/#{edit_post.slug}"
     else 
-      redirect "/posts/#{edit_post.id}/edit"
+      redirect "/posts/#{edit_post.slug}/edit"
     end
   end
 
   # DELETE: /posts/5/delete
-  delete "/posts/:id/delete" do
-    delete_post = Post.find_by_id(params[:id])
+  delete "/posts/:slug/delete" do
+    delete_post = Post.find_by_slug(params[:slug])
     if delete_post.user != current_user
       redirect "/posts"
     end
