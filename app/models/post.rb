@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
     end
 
     def slug
-        name.downcase.gsub(" ","-")
+        title.downcase.gsub(" ","-")
     end
 
     def self.find_by_slug(slug)
