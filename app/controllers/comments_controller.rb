@@ -13,21 +13,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET: /comments/5
-  get "/comments/:id" do
-    erb :"/comments/show.html"
-  end
-
-  # # GET: /comments/5/edit
-  # get "/comments/:id/edit" do
-  #   erb :"/comments/edit.html"
-  # end
-
-  # # PATCH: /comments/5
-  # patch "/comments/:id" do
-  #   redirect "/comments/:id"
-  # end
-
   delete "/comments/:id/delete" do
     delete_comment = Comment.find_by_id(params[:id])
     if delete_comment.user != current_user
