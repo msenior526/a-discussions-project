@@ -23,17 +23,16 @@ class PostsController < ApplicationController
   end
 
   # GET: /posts/5
-  get "/posts/:id" do
-    @post = Post.find_by_id(params[:id])
+  get "/posts/:slug" do
+    @post = Post.find_by_slug(params[:slug])
     @comments = @post.comments
-    # binding.pry
     erb :"/posts/show.html"
   end
 
   # GET: /posts/5/edit
-  get "/posts/:id/edit" do
+  get "/posts/:slug/edit" do
     redirect_if_not_logged_in
-    @edit_post = Post.find_by_id(params[:id])
+    @edit_post = Post.find_by_slug(params[:slug])
     if @edit_post.user != current_user
       redirect "/posts"
     end

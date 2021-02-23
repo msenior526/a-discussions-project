@@ -1,5 +1,5 @@
 <h1>Insert the form to edit an instance of your model here.</h1>
-<form action="/posts/<%= @edit_post.id %>" method="post">
+<form action="/posts/<%= @edit_post.slug %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label for="title">TITLE</label>
   <input type="text" id="title" name="post[title]" value="<%= @edit_post.title %>"><br>
