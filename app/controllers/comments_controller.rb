@@ -1,21 +1,9 @@
 class CommentsController < ApplicationController
 
-  # GET: /comments
-  # get "/comments" do
-  #   erb :"/comments/index.html"
-  # end
-
-  # # GET: /comments/new
-  # get "/comments/new" do
-  #   erb :"/comments/new.html"
-  # end
-
-  # POST: /comments
   post "/comments" do
     redirect_if_not_logged_in
     post = Post.find_by_id(params[:comment][:post_id])
     comment = post.comments.build(content: params[:comment][:content], user_id: session[:user_id])
-    binding.pry
     if comment.save
       flash[:success] = "Successfully created!"
     redirect "/posts/#{post.id}"
@@ -40,7 +28,6 @@ class CommentsController < ApplicationController
   #   redirect "/comments/:id"
   # end
 
-  # DELETE: /comments/5/delete
   delete "/comments/:id/delete" do
     delete_comment = Comment.find_by_id(params[:id])
     if delete_comment.user != current_user
