@@ -18,18 +18,6 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  post "/favoriteposts" do
-    post = Post.find_by_id(params[:favoriteposts][:post_id])
-    if !post.favorited_by.include?(current_user)
-      fav = Favoritepost.create(params[:favoriteposts])
-    else
-     favortiepost = Favoritepost.where(["user_id = ? and post_id = ?", current_user.id, post.id]).delete_all
-    #  binding.pry
-    end
-    redirect "/posts/#{post.id}"
-
-  end
-
   helpers do
     def current_user
 			@current_user ||= User.find(session[:user_id]) if session[:user_id]
