@@ -1,22 +1,24 @@
 <% if flash[:error] %>
-<%= flash[:error] %>
+    <%= flash[:error] %>
 <% end %>
 
 <% if flash[:success] %>
-<%= flash[:success] %>
+    <%= flash[:success] %>
 <% end %>
 
 <h1>SIGN UP</h1>
 <form action="/signup" method="POST">
-<label for="username">Username:</label>
-<input type="text" id="username" name="user[username]"><br>
-<label for="email">Email:</label>
-<input type="email" id="email" name="user[email]"><br>
-<label for="password">Password:</label>
-<input type="password" id="password" name="user[password]"><br>
-<label for="password_confirmation">Confirm Password:</label>
-<input type="password" id="password_confirmation" name="user[password_confirmation]"><br>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="user[username]"><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="user[email]"><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="user[password]"><br>
+    
+    <label for="password_confirmation">Confirm Password:</label>
+    <input type="password" id="password_confirmation" name="user[password_confirmation]"><br>
 
-
-<input type="submit" value="Create Account">
+    <input type="submit" value="Create Account">
 </form>
