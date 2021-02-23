@@ -1,9 +1,9 @@
 <% if flash[:error] %>
-<%= flash[:error] %>
+  <%= flash[:error] %>
 <% end %>
 
 <% if flash[:success] %>
-<%= flash[:success] %>
+  <%= flash[:success] %>
 <% end %>
 
 <h1>WELCOME, <%= @user.username.capitalize %>!</h1><br>
@@ -11,28 +11,28 @@
 <a href="/users/<%= @user.id %>/favorites">Favorites</a><br>
 
 <% if @user.posts.count == 0 %>
-<p> You have no posts. <a href="/posts/new">Create a new one here.</a> </p>
+  <p> You have no posts. <a href="/posts/new">Create a new one here.</a> </p>
 <% else %>
-Create a new post <a href="/posts/new">here</a>!<br>
-<h3>Here are all of your posts:</h3><br>
-<% @user.posts.each do |post| %>
-    <div class="card">
-    <div class="card-header">
-    <%= post.user.username %>
-    </div>
+  Create a new post <a href="/posts/new">here</a>!<br>
+  <h3>Here are all of your posts:</h3><br>
+  <% @user.posts.each do |post| %>
+      <div class="card">
+      <div class="card-header">
+      <%= post.user.username %>
+      </div>
         <div class="card-body">
         <h5 class="card-title"><a href="/posts/<%= post.id %>"><%= post.title %></a></h5>
-    <p><%= post.description %></p>
-    </div>
-    </div>
-<% end %>
+      <p><%= post.description %></p>
+      </div>
+      </div>
+  <% end %>
 <% end %>
 
 <% if @user.id == session[:user_id] %>
-          <form action="/users/<%= @user.id %>/delete" method="post">
-            <input id="hidden" type="hidden" name="_method" value="delete">
-            <input type="submit" value="Delete Account">
-          </form>
-        <% end %>
+  <form action="/users/<%= @user.id %>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Account">
+  </form>
+<% end %>
 
 <a href="/logout">LOG OUT</a> 
