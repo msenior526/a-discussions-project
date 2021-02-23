@@ -1,16 +1,17 @@
 <% if flash[:error] %>
-<%= flash[:error] %>
+  <%= flash[:error] %>
 <% end %>
 
 <% if flash[:success] %>
-<%= flash[:success] %>
+  <%= flash[:success] %>
 <% end %>
+
 <% if logged_in? %>
-<form method="post" action="/favoriteposts">
-<input type="hidden" value="<%= @post.id %>" name="favoriteposts[post_id]">
-<input type="hidden" value="<%= current_user.id %>" name="favoriteposts[user_id]">
-<input id="favorite-button" type="submit" value="<%= @post.button_text(current_user) %>">
-</form>
+  <form method="post" action="/favoriteposts">
+    <input type="hidden" value="<%= @post.id %>" name="favoriteposts[post_id]">
+    <input type="hidden" value="<%= current_user.id %>" name="favoriteposts[user_id]">
+    <input id="favorite-button" type="submit" value="<%= @post.button_text(current_user) %>">
+  </form>
 <% end %>
 
 <h1><%= @post.title %></h1>
@@ -18,38 +19,33 @@
 
 <% @comments.each do |comment|  %>
   <div class="card">
-  <div class="card-header">
-@<%=   comment.user.username %><br>
-</div>
-<div class="card-body">
-<p class="card-text"><%=   comment.content %><br></p>
-<% if comment.user_id == session[:user_id] %>
-<form action="/comments/<%= comment.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Comment">
-</form>
-<% end %>
-</div>
-    
+    <div class="card-header">
+    @<%=  comment.user.username %><br>
     </div>
+    <div class="card-body">
+      <p class="card-text"><%= comment.content %><br></p>
+        <% if comment.user_id == session[:user_id] %>
+          <form action="/comments/<%= comment.id %>/delete" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Comment">
+          </form>
+        <% end %>
+    </div>
+  </div>
 <% end %>
-<% if logged_in? %>
-<form action="/comments" method="post">
-<input type="hidden" value="<%= @post.id %>" name="comment[post_id]">
-<label for="comment">Comment:</label>
-<textarea id="content" name="comment[content]"></textarea>
-<input type="submit" value="Submit Comment">
-</form>
-<% end %>
-<br>
-<br>
-<br>
-<br>
 
+<% if logged_in? %>
+  <form action="/comments" method="post">
+    <input type="hidden" value="<%= @post.id %>" name="comment[post_id]">
+    <label for="comment">Comment:</label>
+    <textarea id="content" name="comment[content]"></textarea>
+    <input type="submit" value="Submit Comment">
+  </form>
+<% end %>
 
 <% if @post.user_id == session[:user_id] %>
-<form action="/posts/<%= @post.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Post">
-</form> 
+  <form action="/posts/<%= @post.id %>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Post">
+  </form> 
 <% end %>

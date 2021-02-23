@@ -14,8 +14,8 @@ class CommentsController < ApplicationController
   post "/comments" do
     redirect_if_not_logged_in
     post = Post.find_by_id(params[:comment][:post_id])
-    # binding.pry
     comment = post.comments.build(content: params[:comment][:content], user_id: session[:user_id])
+    binding.pry
     if comment.save
       flash[:success] = "Successfully created!"
     redirect "/posts/#{post.id}"
