@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
 
   get "/users" do
-    # binding.pry
     redirect_if_not_logged_in
     redirect "users/:id"
   end
 
-  # GET: /users/new, SIGNUP PAGE
   get "/signup" do
     if logged_in?
       redirect "/users"
@@ -14,7 +12,6 @@ class UsersController < ApplicationController
     erb :"/users/signup.html"
   end
 
-  # POST: /users
   post "/signup" do
    user = User.create(params[:user])
     if user.valid?
@@ -27,7 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET: /users/5
   get "/users/:id" do
     @user = current_user
     erb :"/users/show.html"
@@ -38,7 +34,6 @@ class UsersController < ApplicationController
     erb :"/users/favorites.html"
   end
 
-  # # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     delete_user = User.find_by_id(params[:id])
     if delete_user != current_user
