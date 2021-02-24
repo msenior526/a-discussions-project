@@ -34,6 +34,21 @@ class UsersController < ApplicationController
     erb :"/users/favorites.html"
   end
 
+  get "/users/:id/edit" do
+    redirect_if_not_logged_in
+    @user = User.find_by_id(params[:id])
+    erb :"/users/edit.html"
+  end
+
+  patch "/users/:id" do
+    edit_user = User.find_by_id(params[:id])
+    if edit_user != current_user
+      redirect "/users"
+    else
+      redirect "/users/#{edit_user.id}/edit"
+    end
+  end
+
   delete "/users/:id" do
     delete_user = User.find_by_id(params[:id])
     if delete_user != current_user
