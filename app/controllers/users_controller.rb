@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   get "/users" do
     redirect_if_not_logged_in
-    redirect "users/:id"
+    user = current_user
+    redirect "users/#{user.id}"
   end
 
   get "/signup" do
@@ -25,27 +26,21 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    @user = current_user
+    @user = User.find_by_id(params[:id])
+    if @user != current_user
+      redirect "/"
+    else
     erb :"/users/show.html"
+    end
   end
 
   get "/users/:id/favorites" do
-    @favorites = current_user.favorites
-    erb :"/users/favorites.html"
-  end
-
-  get "/users/:id/edit" do
-    redirect_if_not_logged_in
-    @user = User.find_by_id(params[:id])
-    erb :"/users/edit.html"
-  end
-
-  patch "/users/:id" do
-    edit_user = User.find_by_id(params[:id])
-    if edit_user != current_user
-      redirect "/users"
+    user = User.find_by_id(params[:id])
+    if user == current_user
+      @favorites = current_user.favorites
+      erb :"/users/favorites.html"
     else
-      redirect "/users/#{edit_user.id}/edit"
+      redirect "/users"
     end
   end
 
