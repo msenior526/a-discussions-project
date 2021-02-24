@@ -1,5 +1,8 @@
 <h1>Favorites</h1>
 
+<% if @favorites.count == 0 %>
+    <p> Oops, you have no favorites. Add a post to your favorites to view them here. </p>
+<% end %>
 <% @favorites.each do |fav| %>
     <div class="card">
     <div class="card-header">

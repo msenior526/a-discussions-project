@@ -6,10 +6,10 @@ class CommentsController < ApplicationController
     comment = post.comments.build(content: params[:comment][:content], user_id: session[:user_id])
     if comment.save
       flash[:success] = "Successfully created!"
-    redirect "/posts/#{post.id}"
+    redirect "/posts/#{post.slug}"
     else
       flash[:error] = comment.errors.full_messages.to_sentence
-      redirect "/posts/#{post.id}"
+      redirect "/posts/#{post.slug}"
     end
   end
 
