@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     end
   end
 
-  delete "/posts/:slug/delete" do
+  delete "/posts/:slug" do
     delete_post = Post.find_by_slug(params[:slug])
     if delete_post.user != current_user
       redirect "/posts"

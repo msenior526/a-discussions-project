@@ -48,7 +48,7 @@
 <% end %>
 
 <% if @post.user_id == session[:user_id] %>
-  <form action="/posts/<%= @post.slug %>/delete" method="post">
+  <form action="/posts/<%= @post.slug %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Post">
   </form> 

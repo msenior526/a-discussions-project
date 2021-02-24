@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     erb :"/users/favorites.html"
   end
 
-  delete "/users/:id/delete" do
+  delete "/users/:id" do
     delete_user = User.find_by_id(params[:id])
     if delete_user != current_user
       redirect "/users"
