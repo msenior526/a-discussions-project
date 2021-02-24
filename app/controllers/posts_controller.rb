@@ -12,9 +12,9 @@ class PostsController < ApplicationController
   end
 
   post "/posts" do
-    @user = current_user
+    user = current_user
     post = Post.create(params[:post])
-    post.user = @user
+    post.user = user
     post.save
     redirect "/posts"
   end
@@ -40,8 +40,10 @@ class PostsController < ApplicationController
   patch "/posts/:slug" do
     edit_post = Post.find_by_slug(params[:slug])
     if edit_post.update(params[:post])
+      flash[:success] = "Successfully edited your post!"
       redirect "/posts/#{edit_post.slug}"
     else 
+      flash[:error] = edit_post.errors.full_messages.to_sentence
       redirect "/posts/#{edit_post.slug}/edit"
     end
   end

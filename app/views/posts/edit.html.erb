@@ -1,3 +1,11 @@
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<% end %>
+
 <h1>Insert the form to edit an instance of your model here.</h1>
 <form action="/posts/<%= @edit_post.slug %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
