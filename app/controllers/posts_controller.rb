@@ -12,11 +12,14 @@ class PostsController < ApplicationController
   end
 
   post "/posts" do
-    user = current_user
-    post = Post.create(params[:post])
-    post.user = user
-    post.save
-    redirect "/posts"
+    post = current_user.posts.build(params[:post])
+    if post.save
+      flash[:success] = "SUCCESS! Scroll to the end to view your post."
+      redirect "/posts"
+    else
+      flash[:error] = post.errors.full_messages.to_sentence
+      redirect "/posts/new"
+    end
   end
 
   get "/posts/:slug" do

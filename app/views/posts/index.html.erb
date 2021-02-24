@@ -1,3 +1,11 @@
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<% end %>
+
 <h1>All Forums</h1>
 
 <% if logged_in? %>
